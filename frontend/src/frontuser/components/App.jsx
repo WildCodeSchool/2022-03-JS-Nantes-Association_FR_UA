@@ -1,4 +1,4 @@
-import Home from "@pages/Home";
+import Home from "src/frontuser/pages/Home";
 
 import "./styles/App.css";
 
