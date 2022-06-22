@@ -8,8 +8,6 @@ router.post("/users/register", UserController.register);
 router.post("/users/login", UserController.login);
 router.get("/users", authorization, UserController.browse);
 router.get("/users/logout", authorization, UserController.logout);
-// router.put("/users/:id", UserController.edit);
-// router.delete("/users/:id", UserController.delete);
 
 router.get("/items", ItemController.browse);
 router.get("/items/:id", ItemController.read);
