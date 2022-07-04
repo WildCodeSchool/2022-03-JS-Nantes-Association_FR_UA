@@ -1,6 +1,11 @@
 const express = require("express");
 const { authorization } = require("./controllers/UserController");
-const { UserController, ItemController } = require("./controllers");
+const {
+  UserController,
+  ItemController,
+  NewsContentController,
+  NewsController,
+} = require("./controllers");
 
 const router = express.Router();
 
@@ -14,5 +19,12 @@ router.get("/items/:id", ItemController.read);
 router.put("/items/:id", ItemController.edit);
 router.post("/items", ItemController.add);
 router.delete("/items/:id", ItemController.delete);
+
+router.get("/newscontent", NewsContentController.browse);
+router.get("/newscontent/:id", NewsContentController.read);
+router.put("/newscontent/:id", NewsContentController.edit);
+
+router.get("/news", NewsController.browse);
+router.get("/news/:id", NewsController.read);
 
 module.exports = router;

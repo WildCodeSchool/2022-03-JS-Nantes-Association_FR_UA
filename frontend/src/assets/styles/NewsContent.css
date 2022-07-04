@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=News+Cycle&display=swap");
+
+.post-slide {
+  font-family: "News Cycle";
+  background: #fff;
+  margin: 1rem 1rem 1rem 1rem;
+  border-radius: 15px;
+}
+
+.post-slide .post-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.post-slide .post-img img {
+  width: 100%;
+  height: auto;
+  transform: scale(1, 1);
+  transition: transform 0.2s linear;
+}
+
+.post-slide .post-content {
+  background: #fff;
+  padding: 2px 20px 40px;
+  border-radius: 15px;
+}
+
+.post-slide .post-description {
+  line-height: 24px;
+  color: #808080;
+  margin-bottom: 25px;
+}
+
+.post-slide .post-date {
+  color: #a9a9a9;
+  font-size: 14px;
+}
+.post-date i {
+  font-size: 20px;
+  margin-right: 8px;
+  color: #cfdace;
+}
+
+@media only screen and (max-width: 1280px) {
+  .post-slide .post-content {
+    padding: 0px 15px 25px 15px;
+  }
+}
