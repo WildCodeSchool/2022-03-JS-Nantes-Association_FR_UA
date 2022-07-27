@@ -15,6 +15,7 @@ import ContentPhoto from "./frontadmin/pages/ContentPhoto";
 import MemberForm from "./frontadmin/components/Form/MemberForm";
 import Members from "./frontadmin/pages/Members";
 import Register from "./frontadmin/pages/Register";
+import { AuthContextProvider } from "./frontadmin/context/AuthContext";
 
 export default function App() {
   const [traduction, setTraduction] = useState({});
@@ -28,23 +29,25 @@ export default function App() {
 
   return (
     <div className="app">
-      <GlobalContext.Provider value={{ traduction, lang, setLang }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/involve" element={<Involve />} />
-          <Route path="/admin/" element={<LayoutAdmin />}>
-            <Route index element={<ContentHome />} />
-            <Route path="/admin/login" element={<Login />} />
-            <Route path="/admin/register" element={<Register />} />
-            <Route path="/admin/accueil" element={<ContentHome />} />
-            <Route path="/admin/donation" element={<ContentInvolve />} />
-            <Route path="/admin/other" element={<ContentOther />} />
-            <Route path="/admin/photos" element={<ContentPhoto />} />
-            <Route path="/admin/membre" element={<Members />} />
-            <Route path="/admin/addmembre" element={<MemberForm />} />
-          </Route>
-        </Routes>
-      </GlobalContext.Provider>
+      <AuthContextProvider>
+        <GlobalContext.Provider value={{ traduction, lang, setLang }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/involve" element={<Involve />} />
+            <Route path="/admin/" element={<LayoutAdmin />}>
+              <Route index element={<ContentHome />} />
+              <Route path="/admin/login" element={<Login />} />
+              <Route path="/admin/register" element={<Register />} />
+              <Route path="/admin/accueil" element={<ContentHome />} />
+              <Route path="/admin/donation" element={<ContentInvolve />} />
+              <Route path="/admin/other" element={<ContentOther />} />
+              <Route path="/admin/photos" element={<ContentPhoto />} />
+              <Route path="/admin/membre" element={<Members />} />
+              <Route path="/admin/addmembre" element={<MemberForm />} />
+            </Route>
+          </Routes>
+        </GlobalContext.Provider>
+      </AuthContextProvider>
     </div>
   );
 }
