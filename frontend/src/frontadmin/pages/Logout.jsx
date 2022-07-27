@@ -1,15 +1,22 @@
 /* eslint-disable no-alert */
 import axios from "axios";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 function Logout() {
+  const { setLoggedUser } = useContext(AuthContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/logout`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/users/logout`, {
         withCredentials: true,
       })
       .then(() => {
-        alert("Vous êtes bien déconnecté");
+        setLoggedUser({
+          status: false,
+          user: {},
+        });
       })
       .catch((err) => {
         if (err.response.status === 401) {

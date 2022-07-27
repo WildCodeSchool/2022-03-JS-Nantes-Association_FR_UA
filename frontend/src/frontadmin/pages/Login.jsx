@@ -1,31 +1,42 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import "../../assets/styles/Login.css";
 import logo from "../../assets/img/logo.png";
+import AuthContext from "../context/AuthContext";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!email || !password) {
-      alert("Merci de renseigner l'email et le mot de passe");
-    } else {
-      axios
-        .post(
-          `${import.meta.env.VITE_BACKEND_URL}/users/login`,
-          { email, password },
-          { withCredentials: true }
-        )
-        .then((response) => console.log(response.data))
-        .catch((err) => {
-          alert(err.response.data.error);
-        });
-    }
+  const { setLoggedUser } = useContext(AuthContext);
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setForm((currentForm) => ({
+      ...currentForm,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/login`,
+        { ...form },
+        { withCredentials: true }
+      )
+      .then(({ data }) =>
+        setLoggedUser({
+          status: true,
+          user: data,
+        })
+      );
   };
 
   return (
@@ -35,24 +46,28 @@ function Login() {
       <h3>Identifiez-vous</h3>
       <form onSubmit={handleSubmit}>
         <div className="user-box">
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label hmtlFor="email">Email</label>
+          <label hmtlFor="email">
+            Email
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </label>
         </div>
         <div className="user-box">
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">
+            Mot de passe
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+            />
+          </label>
         </div>
         <div className="submit-box">
           <a href="à actualiser quand l'interface admin sera en place">

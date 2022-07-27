@@ -1,5 +1,5 @@
-/* .navbar {
-  display: flex;
+.navbar {
+  display: none;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
@@ -137,4 +137,4 @@
   .show_nav .burger_bar::after {
     transform: rotate(-45deg);
   }
-} */
+}

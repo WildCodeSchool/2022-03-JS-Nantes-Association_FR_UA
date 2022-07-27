@@ -13,13 +13,8 @@ export default function MenuBurger({ handleShowLinks }) {
             </NavLink>
           </li>
           <li className="navbar_item">
-            <NavLink to="/news" onClick={handleShowLinks}>
-              ACTUALITÉS
-            </NavLink>
-          </li>
-          <li className="navbar_item">
             <NavLink to="/involve" onClick={handleShowLinks}>
-              ADHÉRER, DONNER
+              PARTICIPER
             </NavLink>
           </li>
         </ul>
