@@ -37,7 +37,7 @@ export default function Involve() {
         </p>
         <p className="involve-title">
           <span className="involve-span-title">
-            <Traduction reference="involve_slogan1" />
+            <Traduction reference="involve_slogan2" />
           </span>
         </p>
 
